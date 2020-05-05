@@ -11,7 +11,7 @@ public class Point : MonoBehaviour
         {
             Debug.Log("Lecimy kurwa tutaj");
             Instantiate(effect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(gameObject);            
         }
     }
 }

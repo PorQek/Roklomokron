@@ -21,14 +21,13 @@ public class Player_Movement : MonoBehaviour
 
     public void Eat()
     {
-        //czekaj chwile k
         DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
         transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
     }
 
     private void Fill()
     {
-        transform.DOScale(0, transform.localScale.magnitude * 15f / originalScale.magnitude).OnComplete(KulkaDed);
+        transform.DOScale(0, transform.localScale.magnitude * 8f / originalScale.magnitude).OnComplete(KulkaDed);
     }
 
     private void KulkaDed()
