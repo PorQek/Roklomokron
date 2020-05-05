@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
     public static bool PlayerisDead = false;
 
     public GameObject deathMenuUI;
+    public GameObject Score;
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class DeathMenu : MonoBehaviour
         deathMenuUI.SetActive(false);
         Time.timeScale = 1f;
         PlayerisDead = false;
+        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
 
     void DeathScreen()

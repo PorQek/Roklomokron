@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private Transform left, right;
@@ -22,7 +23,8 @@ public class Player_Movement : MonoBehaviour
     public void Eat()
     {
         DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
-        transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
+        if (transform.localScale.x < 2)
+            transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
     }
 
     private void Fill()
@@ -33,6 +35,7 @@ public class Player_Movement : MonoBehaviour
     private void KulkaDed()
     {
         DeathMenu.PlayerisDead = true;
+        ScoreScript.scoreValue = 0;
     }
     void Update()
     {
@@ -40,11 +43,22 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isLeft)
         {
             transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");
+            
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            ScoreScript.scoreValue += 1;
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            ScoreScript.scoreValue += 1;
         }
 
         if (Input.GetMouseButtonDown(1) && isLeft)
         {
+            
             transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; }).SetId("MoveRight");
+            
         }
 
     }

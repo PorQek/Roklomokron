@@ -17,11 +17,13 @@ public class World_Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("World");
+            
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("World");
+            
         }
     }
 }
