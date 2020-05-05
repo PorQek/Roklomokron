@@ -32,7 +32,7 @@ public class Player_Movement : MonoBehaviour
 
     private void KulkaDed()
     {
-
+        DeathMenu.PlayerisDead = true;
     }
     void Update()
     {
@@ -56,5 +56,12 @@ public class Player_Movement : MonoBehaviour
             Eat();
             Debug.Log("Zjedzone w chuj");
         }
+
+        if (other.tag == "Obstacle")
+        {
+            KulkaDed();
+            Debug.Log("Zgooon");
+        }
     }
+
 }

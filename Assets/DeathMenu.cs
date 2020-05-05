@@ -21,7 +21,7 @@ public class DeathMenu : MonoBehaviour
        
     }
 
-    public void Replay()
+    public void Restart()
     {
         deathMenuUI.SetActive(false);
         Time.timeScale = 1f;
