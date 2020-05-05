@@ -21,8 +21,9 @@ public class Player_Movement : MonoBehaviour
 
     public void Eat()
     {
-        transform.DOKill(false);
-        transform.DOScale(transform.localScale * 1.2f, 0.2f).OnComplete(Fill);
+        //czekaj chwile k
+        DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
+        transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
     }
 
     private void Fill()
@@ -39,12 +40,12 @@ public class Player_Movement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isLeft)
         {
-            transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; });
+            transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");
         }
 
         if (Input.GetMouseButtonDown(1) && isLeft)
         {
-            transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; });
+            transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; }).SetId("MoveRight");
         }
 
     }
@@ -52,9 +53,9 @@ public class Player_Movement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Point")
-        {
-            Debug.Log("Zjedzone w chuj");
+        {            
             Eat();
+            Debug.Log("Zjedzone w chuj");
         }
     }
 }
