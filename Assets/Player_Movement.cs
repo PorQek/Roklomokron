@@ -7,12 +7,17 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private Transform left, right;
-    [SerializeField] private float speed = 0.05f;
+    [SerializeField] private float speed = 0.05f;    
 
     private bool isAnimating = false;
     private bool isLeft = true;
 
     private Vector3 originalScale;
+
+    public SizeBar sizeBar;
+    public float size;
+
+    
 
     private void Start()
     {
@@ -23,7 +28,7 @@ public class Player_Movement : MonoBehaviour
     public void Eat()
     {
         DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
-        if (transform.localScale.x < 2)
+        if (transform.localScale.x <= 2)
             transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
     }
 
@@ -39,6 +44,8 @@ public class Player_Movement : MonoBehaviour
     }
     void Update()
     {
+        size = transform.localScale.x;
+        sizeBar.SetHealth(size);
 
         if (Input.GetMouseButtonDown(0) && !isLeft)
         {

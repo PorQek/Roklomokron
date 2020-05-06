@@ -9,6 +9,7 @@ public class DeathMenu : MonoBehaviour
 
     public GameObject deathMenuUI;
     public GameObject Score;
+    public GameObject SizeBar;
 
     private void Start()
     {
@@ -29,12 +30,14 @@ public class DeathMenu : MonoBehaviour
         Time.timeScale = 1f;
         PlayerisDead = false;
         SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        SizeBar.SetActive(false);
     }
 
     void DeathScreen()
     {
         deathMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        SizeBar.SetActive(false);
         PlayerisDead = true;
     }
 

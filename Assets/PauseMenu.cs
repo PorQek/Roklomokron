@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     public GameObject Score;
+    public GameObject SizeBar;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         Score.SetActive(true);
+        SizeBar.SetActive(true);
     }
 
     void Pause()
