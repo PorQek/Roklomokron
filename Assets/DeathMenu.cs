@@ -31,6 +31,7 @@ public class DeathMenu : MonoBehaviour
         PlayerisDead = false;
         SceneManager.LoadScene( SceneManager.GetActiveScene().name );
         SizeBar.SetActive(false);
+        ScoreScript.scoreValue = 0;
     }
 
     void DeathScreen()

@@ -28,7 +28,7 @@ public class Player_Movement : MonoBehaviour
     public void Eat()
     {
         DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
-        if (transform.localScale.x <= 2)
+        if (transform.localScale.x < 2)
             transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
     }
 
@@ -40,48 +40,55 @@ public class Player_Movement : MonoBehaviour
     private void KulkaDed()
     {
         DeathMenu.PlayerisDead = true;
-        ScoreScript.scoreValue = 0;
+        
     }
     void Update()
     {
         size = transform.localScale.x;
         sizeBar.SetHealth(size);
 
-        if (Input.GetMouseButtonDown(0) && !isLeft)
-        {
-            transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");
-            
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            ScoreScript.scoreValue += 1;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            ScoreScript.scoreValue += 1;
-        }
-
-        if (Input.GetMouseButtonDown(1) && isLeft)
-        {
-            
-            transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; }).SetId("MoveRight");
-            
-        }
-
+        Movement();
+        GetScore();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Point")
         {            
-            Eat();
-            Debug.Log("Zjedzone w chuj");
+            Eat();            
         }
 
         if (other.tag == "Obstacle")
         {
-            KulkaDed();
-            Debug.Log("Zgooon");
+            KulkaDed();            
+        }
+    }
+    
+    void GetScore()
+    {
+        if (DeathMenu.PlayerisDead == false)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ScoreScript.scoreValue += 1;
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                ScoreScript.scoreValue += 1;
+            }
+        }
+    }
+
+    void Movement()
+    {
+        if (Input.GetMouseButtonDown(0) && !isLeft)
+        {
+            transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");
+        }
+
+        if (Input.GetMouseButtonDown(1) && isLeft)
+        {
+            transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; }).SetId("MoveRight");
         }
     }
 
