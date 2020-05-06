@@ -17,6 +17,8 @@ public class Player_Movement : MonoBehaviour
     public SizeBar sizeBar;
     public float size;
 
+    private bool gameStarted = false;
+
     
 
     private void Start()
@@ -36,13 +38,15 @@ public class Player_Movement : MonoBehaviour
 
     private void Fill()
     {
+        if (gameStarted == true)
         transform.DOScale(0, transform.localScale.magnitude * 8f / originalScale.magnitude).OnComplete(KulkaDed);
     }
 
     private void KulkaDed()
     {
         DeathMenu.PlayerisDead = true;
-        
+        gameStarted = false;
+
     }
     void Update()
     {
@@ -54,7 +58,7 @@ public class Player_Movement : MonoBehaviour
         
         if (size >= 1.5f)
         {
-            Fever.EnoughSize = true;
+            Fever.EnoughSize = true;            
         }else
         {
             Fever.EnoughSize = false;
@@ -98,11 +102,13 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isLeft)
         {
             transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");
+            gameStarted = true;
         }
 
         if (Input.GetMouseButtonDown(1) && isLeft)
         {
             transform.DOMoveX(right.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = false; }).SetId("MoveRight");
+            gameStarted = true;
         }
     }
 
