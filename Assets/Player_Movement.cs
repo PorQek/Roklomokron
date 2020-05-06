@@ -27,9 +27,11 @@ public class Player_Movement : MonoBehaviour
 
     public void Eat()
     {
-        DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World"});
         if (transform.localScale.x < 2)
-            transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);
+        {
+            DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World" });
+            transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);            
+        }
     }
 
     private void Fill()
@@ -49,6 +51,14 @@ public class Player_Movement : MonoBehaviour
 
         Movement();
         GetScore();
+        
+        if (size >= 1.5f)
+        {
+            Fever.EnoughSize = true;
+        }else
+        {
+            Fever.EnoughSize = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -81,6 +91,10 @@ public class Player_Movement : MonoBehaviour
 
     void Movement()
     {
+        if (PauseMenu.GameIsPaused == true)
+            return;
+
+
         if (Input.GetMouseButtonDown(0) && !isLeft)
         {
             transform.DOMoveX(left.position.x, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("MoveLeft");

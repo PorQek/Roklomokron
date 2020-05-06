@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        
         Pause();
     }
     void Update()
@@ -37,6 +38,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Score.SetActive(true);
         SizeBar.SetActive(true);
+        
     }
 
     void Pause()
