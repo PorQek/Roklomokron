@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -8,7 +9,7 @@ public class World_Movement : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 0.05f;
     
-    private bool isAnimating = false;
+    [HideInInspector] public bool isAnimating = false;
     private bool isLeft = true;
 
     public GameObject BackGround;
@@ -17,7 +18,14 @@ public class World_Movement : MonoBehaviour
     
     public GameObject FeverWalls;
 
+    private bool destroyAfterAnimation = false;
 
+    private LevelGenerator _levelGenerator;
+
+    private void Start()
+    {
+        _levelGenerator = FindObjectOfType<LevelGenerator>();
+    }
 
     void Update()
     {
@@ -31,8 +39,15 @@ public class World_Movement : MonoBehaviour
 
         if (other.tag == "Destroyer")
         {
-            Destroy(gameObject);
+//            destroyAfterAnimation = true;
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        _levelGenerator.tryToSpawn = true;
+        Destroy(gameObject);
     }
 
     public void WorldMovement()
@@ -42,7 +57,13 @@ public class World_Movement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("World");
+            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(
+                () =>
+                {
+                    isAnimating = false; isLeft = true;
+                    if(destroyAfterAnimation)
+                        Die();
+                }).SetId("World");
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -59,6 +80,13 @@ public class World_Movement : MonoBehaviour
             FeverBackGround.SetActive(true);
 
             FeverWalls.SetActive(true);
+            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(
+                () =>
+                {
+                    isAnimating = false; isLeft = true;
+                    if(destroyAfterAnimation)
+                        Die();
+                }).SetId("World");
         }
         else
         {

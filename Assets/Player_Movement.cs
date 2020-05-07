@@ -8,7 +8,8 @@ public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private Transform left, right;
     [SerializeField] private float speed = 0.05f;    
-
+    [SerializeField] private Vector3 _scaleChangeOnEat = new Vector3(0.1f, 0.1f, 0.1f);
+    
     private bool isAnimating = false;
     private bool isLeft = true;
 
@@ -30,17 +31,23 @@ public class Player_Movement : MonoBehaviour
 
     public void Eat()
     {
+        Vector3 scaleToAdd;
         if (transform.localScale.x < 2)
         {
             DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World" });
-            transform.DOScale(transform.localScale * 1.1f, 0.2f).OnComplete(Fill);            
+            if (transform.localScale.x <= 1)
+                scaleToAdd = _scaleChangeOnEat;
+            else
+                scaleToAdd = Vector3.zero;
+            
+            transform.DOScale(transform.localScale += scaleToAdd, 0.2f).OnComplete(Fill);
         }
     }
 
     private void Fill()
     {
         if (gameStarted == true)
-        transform.DOScale(0, transform.localScale.magnitude * 8f / originalScale.magnitude).OnComplete(KulkaDed);
+        transform.DOScale(0, (transform.localScale.magnitude * 8f / originalScale.magnitude)*2).OnComplete(KulkaDed);
     }
 
     private void KulkaDed()
