@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
 
     private Vector3 originalScale;
 
+    public SizeBar feverSizeBar;
     public SizeBar sizeBar;
     public float size;
 
@@ -52,6 +53,7 @@ public class Player_Movement : MonoBehaviour
     {
         size = transform.localScale.x;
         sizeBar.SetHealth(size);
+        feverSizeBar.SetHealth(size);
 
         Movement();
         GetScore();
