@@ -1467,10 +1467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1537,6 +1537,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 69452548}
   Score: {fileID: 1812956410}
   SizeBar: {fileID: 1271368739}
+  playerSR: {fileID: 0}
 --- !u!114 &1003396406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,9 +1652,11 @@ MonoBehaviour:
   left: {fileID: 1859288563}
   right: {fileID: 723033369}
   speed: 0.05
+  _scaleChangeOnEat: {x: 0.1, y: 0.1, z: 0.1}
   feverSizeBar: {fileID: 1553935216}
   sizeBar: {fileID: 1271368742}
   size: 0
+  highScore: {fileID: 0}
 --- !u!61 &1051460937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2990,10 +2993,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FeverEffect: {fileID: 1118561729}
+  SnowEffect: {fileID: 0}
   SizeBar: {fileID: 1271368739}
   FeverSizeBar: {fileID: 1553935214}
   PlayerSR: {fileID: 1051460934}
-  BackgroundSR: {fileID: 1739519616}
 --- !u!4 &1719801812
 Transform:
   m_ObjectHideFlags: 0
@@ -3481,9 +3484,6 @@ MonoBehaviour:
   - {fileID: 3842454499978622771, guid: b3ddf344166bd974c8dada0941b1fdef, type: 3}
   - {fileID: 6420046142026742981, guid: c2d54a09df7486449b60658da9a233ae, type: 3}
   player: {fileID: 955699653}
-  newLevelPart: {fileID: 0}
-  lastLevelPartTransform: {fileID: 0}
-  lastEndPosition: {x: 0, y: 0, z: 0}
   tryToSpawn: 0
 --- !u!4 &2060677554
 Transform:

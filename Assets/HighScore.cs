@@ -14,12 +14,6 @@ public class HighScore : MonoBehaviour
         highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
-    private void Update()
-    {       
-        
-        
-    }
-
     public void GetHighScore()
     {
         if (number > PlayerPrefs.GetInt("HighScore", 0))

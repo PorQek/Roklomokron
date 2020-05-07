@@ -6,7 +6,10 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = true;
 
+    public GameObject player;
+    
     public GameObject pauseMenuUI;
+    public GameObject shopMenu;
 
     public GameObject Score;
     public GameObject SizeBar;
@@ -36,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        player.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Score.SetActive(true);
@@ -45,9 +49,16 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        player.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
         playerSR.enabled = false;
+    }
+
+    public void Shop()
+    {
+        pauseMenuUI.SetActive(false);
+        shopMenu.SetActive(true);
     }
 
     public void LoadMenu()

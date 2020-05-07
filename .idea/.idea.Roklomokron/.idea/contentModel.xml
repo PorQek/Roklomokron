@@ -20,7 +20,10 @@
           </e>
         </e>
         <e p="DestroyScript.cs" t="Include" />
+        <e p="Equipment.cs" t="Include" />
+        <e p="EquipmentItem.cs" t="Include" />
         <e p="Fever.cs" t="Include" />
+        <e p="HighScore.cs" t="Include" />
         <e p="LevelGenerator.cs" t="Include" />
         <e p="ObstacleController.cs" t="Include" />
         <e p="ParticleDestroy.cs" t="Include" />
@@ -28,6 +31,7 @@
         <e p="Player_Movement.cs" t="Include" />
         <e p="Point.cs" t="Include" />
         <e p="ScoreScript.cs" t="Include" />
+        <e p="ShopMenu.cs" t="Include" />
         <e p="SizeBar.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">

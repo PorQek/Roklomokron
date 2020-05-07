@@ -95,19 +95,29 @@ public class Player_Movement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 if (Fever.EnoughSize == true)
+                {
                     ScoreScript.scoreValue += 2;
+                    HighScore.number += 2;
+                }
                 else
+                {
                     ScoreScript.scoreValue += 1;
-                HighScore.number = ScoreScript.scoreValue;
+                    HighScore.number += 1;
+                }
                 highScore.GetHighScore();
             }
             if (Input.GetMouseButtonDown(1))
             {
                 if (Fever.EnoughSize == true)
+                {
                     ScoreScript.scoreValue += 2;
+                    HighScore.number += 2;
+                }
                 else
+                {
                     ScoreScript.scoreValue += 1;
-                HighScore.number = ScoreScript.scoreValue;
+                    HighScore.number += 1;
+                }
                 highScore.GetHighScore();
             }
         }
