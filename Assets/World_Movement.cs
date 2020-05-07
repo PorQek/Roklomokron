@@ -7,7 +7,7 @@ using DG.Tweening;
 public class World_Movement : MonoBehaviour
 {    
     [SerializeField] private Transform target;
-    [SerializeField] private float speed = 0.05f;
+    [SerializeField] private float speed = 0.1f;
     
     [HideInInspector] public bool isAnimating = false;
     private bool isLeft = true;

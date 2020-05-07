@@ -49,29 +49,35 @@ public class Fever : MonoBehaviour
 
     public void FeverActive()
     {
-        PlayerSR.color = Color.black;        
-        ChangeSpikeColor?.Invoke(Color.black);
-        ChangePointColor?.Invoke(Color.black);
-        ChangeWallColor?.Invoke(Color.black);
+        if (PauseMenu.GameIsPaused == false)
+        {
+            PlayerSR.color = Color.black;
+            ChangeSpikeColor?.Invoke(Color.black);
+            ChangePointColor?.Invoke(Color.black);
+            ChangeWallColor?.Invoke(Color.black);
 
-        FeverEffect.SetActive(true);
-        SnowEffect.SetActive(false);
+            FeverEffect.SetActive(true);
+            SnowEffect.SetActive(false);
 
-        FeverSizeBar.SetActive(true);
-        SizeBar.SetActive(false);
+            FeverSizeBar.SetActive(true);
+            SizeBar.SetActive(false);
+        }        
+        
     }
     public void FeverDeactive()
     {
-        
-        ChangeSpikeColor?.Invoke(ObstacleC);
-        ChangePointColor?.Invoke(PointC);
-        ChangeWallColor?.Invoke(WallC);
-        PlayerSR.color = PointC;
+        if (PauseMenu.GameIsPaused == false)
+        {
+            ChangeSpikeColor?.Invoke(ObstacleC);
+            ChangePointColor?.Invoke(PointC);
+            ChangeWallColor?.Invoke(WallC);
+            PlayerSR.color = PointC;
 
-        FeverEffect.SetActive(false);
-        SnowEffect.SetActive(true);
+            FeverEffect.SetActive(false);
+            SnowEffect.SetActive(true);
 
-        FeverSizeBar.SetActive(false);
-        SizeBar.SetActive(true);
+            FeverSizeBar.SetActive(false);
+            SizeBar.SetActive(true);
+        }
     }
 }

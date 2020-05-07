@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject Score;
     public GameObject SizeBar;
 
+    public SpriteRenderer playerSR;
+
     private void Start()
     {
         
@@ -37,8 +39,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         Score.SetActive(true);
-        SizeBar.SetActive(true);
-        
+        playerSR.enabled = true;
     }
 
     void Pause()
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        playerSR.enabled = false;
     }
 
     public void LoadMenu()

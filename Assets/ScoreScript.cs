@@ -8,14 +8,17 @@ public class ScoreScript : MonoBehaviour
 {
     public static int scoreValue = 0;
     private TextMeshProUGUI score;
+    
 
     void Start()
     {
-        score = GetComponent<TextMeshProUGUI>();
+        score = GetComponent<TextMeshProUGUI>();        
     }
 
     void Update()
     {
         score.text = $"{scoreValue}";
     }
+
+    
 }

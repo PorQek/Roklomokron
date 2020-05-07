@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private Transform left, right;
-    [SerializeField] private float speed = 0.05f;    
+    [SerializeField] private float speed = 0.1f;    
     [SerializeField] private Vector3 _scaleChangeOnEat = new Vector3(0.1f, 0.1f, 0.1f);
     
     private bool isAnimating = false;
@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour
 
     private bool gameStarted = false;
 
-    
+    public HighScore highScore;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class Player_Movement : MonoBehaviour
     private void Fill()
     {
         if (gameStarted == true)
-        transform.DOScale(0, (transform.localScale.magnitude * 5f / originalScale.magnitude)*2).OnComplete(KulkaDed);
+        transform.DOScale(0, (transform.localScale.magnitude * 3f / originalScale.magnitude)*2).OnComplete(KulkaDed);
     }
 
     private void KulkaDed()
@@ -72,6 +72,7 @@ public class Player_Movement : MonoBehaviour
         {
             Fever.EnoughSize = false;
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -93,11 +94,21 @@ public class Player_Movement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                ScoreScript.scoreValue += 1;
+                if (Fever.EnoughSize == true)
+                    ScoreScript.scoreValue += 2;
+                else
+                    ScoreScript.scoreValue += 1;
+                HighScore.number = ScoreScript.scoreValue;
+                highScore.GetHighScore();
             }
             if (Input.GetMouseButtonDown(1))
             {
-                ScoreScript.scoreValue += 1;
+                if (Fever.EnoughSize == true)
+                    ScoreScript.scoreValue += 2;
+                else
+                    ScoreScript.scoreValue += 1;
+                HighScore.number = ScoreScript.scoreValue;
+                highScore.GetHighScore();
             }
         }
     }

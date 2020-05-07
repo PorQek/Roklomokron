@@ -11,4 +11,15 @@ public class SizeBar : MonoBehaviour
     {
         slider.value = health;
     }
+    private void Update()
+    {
+        if (PauseMenu.GameIsPaused == true)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+    }
 }
