@@ -10,6 +10,7 @@ public class DeathMenu : MonoBehaviour
     public GameObject deathMenuUI;
     public GameObject Score;
     public GameObject SizeBar;
+    
 
     private void Start()
     {

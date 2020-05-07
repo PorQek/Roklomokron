@@ -51,7 +51,6 @@ public class LevelGenerator : MonoBehaviour
         newLevelPart = levelPartList[Random.Range(0, levelPartList.Count)];
         _lastEndPosition = lastLevelPartTransform.Find("EndPosition").position;
         lastLevelPartTransform = Instantiate(newLevelPart, _lastEndPosition, Quaternion.identity);
-        Debug.Log("Last position" + lastLevelPartTransform.position);
 //        _lastEndPosition.y -= 6;
     }
 }

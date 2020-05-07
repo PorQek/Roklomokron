@@ -14,8 +14,9 @@ public class World_Movement : MonoBehaviour
 
     public GameObject BackGround;
     public GameObject FeverBackGround;
+    public GameObject FeverBackGround2;
 
-    
+
     public GameObject FeverWalls;
 
     private bool destroyAfterAnimation = false;
@@ -68,7 +69,13 @@ public class World_Movement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(() => { isAnimating = false; isLeft = true; }).SetId("World");
+            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(
+                            () =>
+                            {
+                                isAnimating = false; isLeft = true;
+                                if (destroyAfterAnimation)
+                                    Die();
+                            }).SetId("World");
         }
     }
 
@@ -78,21 +85,16 @@ public class World_Movement : MonoBehaviour
         {
             BackGround.SetActive(false);
             FeverBackGround.SetActive(true);
-
+            FeverBackGround2.SetActive(true);
             FeverWalls.SetActive(true);
-            transform.DOMoveY(target.position.y, speed).SetEase(Ease.InSine).OnStart(() => { isAnimating = true; }).OnComplete(
-                () =>
-                {
-                    isAnimating = false; isLeft = true;
-                    if(destroyAfterAnimation)
-                        Die();
-                }).SetId("World");
+
+            
         }
         else
         {
             BackGround.SetActive(true);
             FeverBackGround.SetActive(false);
-
+            FeverBackGround2.SetActive(false);
             FeverWalls.SetActive(false);
         }
 

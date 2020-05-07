@@ -35,19 +35,19 @@ public class Player_Movement : MonoBehaviour
         if (transform.localScale.x < 2)
         {
             DOTween.KillAll(false, new object[] { "MoveLeft", "MoveRight", "World" });
-            if (transform.localScale.x <= 1)
+            if (transform.localScale.x <= 2)
                 scaleToAdd = _scaleChangeOnEat;
             else
                 scaleToAdd = Vector3.zero;
             
-            transform.DOScale(transform.localScale += scaleToAdd, 0.2f).OnComplete(Fill);
+            transform.DOScale(transform.localScale += scaleToAdd, 0.3f).OnComplete(Fill);
         }
     }
 
     private void Fill()
     {
         if (gameStarted == true)
-        transform.DOScale(0, (transform.localScale.magnitude * 8f / originalScale.magnitude)*2).OnComplete(KulkaDed);
+        transform.DOScale(0, (transform.localScale.magnitude * 5f / originalScale.magnitude)*2).OnComplete(KulkaDed);
     }
 
     private void KulkaDed()
